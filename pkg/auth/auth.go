@@ -122,6 +122,10 @@ func Login(ctx context.Context, systemContext *types.SystemContext, opts *LoginO
 			return fmt.Errorf("not logged into %s", key)
 		}
 		fmt.Fprintf(opts.Stdout, "%s\n", authConfig.Username)
+		// desc, err := config.SetCredentials(systemContext, key, username, password)
+			if opts.Verbose {
+				fmt.Fprintln(opts.Stdout, "Used: ", desc)
+			}		
 		return nil
 	}
 	if authConfig.IdentityToken != "" {
